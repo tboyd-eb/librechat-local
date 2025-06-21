@@ -1,0 +1,4 @@
+#!/bin/sh
+docker compose stop
+"$(dirname $0)/kill-mcp"
+

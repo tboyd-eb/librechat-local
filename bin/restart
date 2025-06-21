@@ -1,0 +1,4 @@
+#!/bin/sh
+"$(dirname $0)/kill-mcp"
+docker compose restart api
+

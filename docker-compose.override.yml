@@ -1,0 +1,7 @@
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./librechat.yml:/app/librechat.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock

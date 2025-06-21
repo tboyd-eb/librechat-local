@@ -1,0 +1,89 @@
+version: 1.2.1
+cache: false
+imageOutputType: jpeg
+includedTools: []
+interface:
+  multiConvo: false
+  runCode: false
+memory:
+  disabled: true
+mcpServers:
+  atlassian:
+    command: docker
+    args:
+      - run
+      - --rm
+      - -i
+      - -e
+      - CONFLUENCE_URL=https://eventbrite.atlassian.net/wiki
+      - -e
+      - CONFLUENCE_USERNAME=username@eventbrite.com
+      - -e
+      - CONFLUENCE_API_TOKEN=changeme
+      - -e
+      - CONFLUENCE_PERSONAL_TOKEN=changeme
+      - -e
+      - JIRA_URL=https://eventbrite.atlassian.net
+      - -e
+      - JIRA_USERNAME=username@eventbrite.com
+      - -e
+      - JIRA_API_TOKEN=changeme
+      - -e
+      - JIRA_PERSONAL_TOKEN=changeme
+      - mcp/atlassian
+
+  aws-docs:
+    command: docker
+    args: 
+      - run
+      - --rm
+      - -i
+      - mcp/aws-documentation
+
+  browser:
+    command: docker
+    args:
+      - run
+      - --rm
+      - -i
+      - mcp/playwright
+
+  cdk:
+    command: docker
+    args:
+      - run
+      - --rm
+      - -i
+      - -e
+      - FASTMCP_LOG_LEVEL=ERROR
+      - mcp/aws-cdk-mcp-server
+
+  github:
+    type: stdio
+    command: docker
+    args:
+      - run
+      - --rm
+      - -i
+      - -e
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+      - ghcr.io/github/github-mcp-server
+      - stdio
+      - --enable-command-logging
+      - --read-only
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: changeme
+
+endpoints:
+  agents:
+    allowedProviders: [lmstudio]
+    # disableBuilder: true
+  custom:
+    - name: lmstudio
+      apiKey: x
+      baseURL: http://192.168.1.130:1234/v1
+      models:
+        default: [oh-dcft-v3.1-claude-3-5-sonnet-20241022@q8_0]
+        fetch: true
+      titleConvo: true
+      titleModel: oh-dcft-v3.1-claude-3-5-sonnet-20241022@q8_0
