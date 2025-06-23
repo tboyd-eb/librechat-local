@@ -5,8 +5,6 @@ includedTools: []
 interface:
   multiConvo: false
   runCode: false
-memory:
-  disabled: true
 mcpServers:
   atlassian:
     command: docker
@@ -69,7 +67,6 @@ mcpServers:
       - GITHUB_PERSONAL_ACCESS_TOKEN
       - ghcr.io/github/github-mcp-server
       - stdio
-      - --enable-command-logging
       - --read-only
     env:
       GITHUB_PERSONAL_ACCESS_TOKEN: changeme
@@ -77,11 +74,10 @@ mcpServers:
 endpoints:
   agents:
     allowedProviders: [lmstudio]
-    # disableBuilder: true
   custom:
     - name: lmstudio
       apiKey: x
-      baseURL: http://192.168.1.130:1234/v1
+      baseURL: http://host.docker.internal:1234/v1
       models:
         default: [oh-dcft-v3.1-claude-3-5-sonnet-20241022@q8_0]
         fetch: true
