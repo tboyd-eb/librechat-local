@@ -31,6 +31,10 @@ docker compose up -d
 
 Once running, the chat interface will be available at [http://localhost:3080][].
 
+> ⚠️ Chat may fail with a connection error in the `LibreChat` container's
+console if you did not use your machine's LAN IP address in the `baseUrl`
+configuration setting in `librechat.yml`.
+
 ## Scripts
 
 MCP server docker containers are often not cleaned up properly after LibreChat

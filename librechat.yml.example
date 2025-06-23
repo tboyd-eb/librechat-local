@@ -1,3 +1,5 @@
+# https://www.librechat.ai/docs/configuration/librechat_yaml
+
 version: 1.2.1
 cache: false
 imageOutputType: jpeg
@@ -77,7 +79,7 @@ endpoints:
   custom:
     - name: lmstudio
       apiKey: x
-      baseURL: http://host.docker.internal:1234/v1
+      baseURL: http://YOUR.MACHINE.LAN.ADDRESS:1234/v1
       models:
         default: [oh-dcft-v3.1-claude-3-5-sonnet-20241022@q8_0]
         fetch: true
